@@ -22,5 +22,18 @@ namespace NZWalksAPI.Controllers
             var regions = dbContext.Regions.ToList();
             return Ok(regions);
         }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public IActionResult GetById([FromRoute] Guid id)
+        {
+            var region = dbContext.Regions.Find(id);
+            if (region == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(region);
+        }
     }
 }
