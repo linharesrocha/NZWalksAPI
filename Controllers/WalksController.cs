@@ -44,10 +44,19 @@ namespace NZWalksAPI.Controllers
 
 
         [HttpGet]
-        [Route("{id: Guid}")]
+        [Route("{id:Guid}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
+            var walkDomainModel = await walkRepository.GetByIdAsync(id);
 
+            if (walkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            var walkDto = mapper.Map<WalkDto>(walkDomainModel);
+
+            return Ok(walkDto);
         }
     }
 }
