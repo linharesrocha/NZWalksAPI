@@ -32,6 +32,8 @@ namespace NZWalksAPI.Repositories
 
             dbContext.Walks.Remove(existingWalk);
             dbContext.SaveChangesAsync();
+
+            return existingWalk;
         }
 
         public async Task<List<Walk>> GetAllAsync()
