@@ -31,7 +31,7 @@ namespace NZWalksAPI.Repositories
 
             var token = new JwtSecurityToken(
                 configuration["Jwt:Issuer"],
-                configuration["Jwt:Audiance"],
+                configuration["Jwt:Audience"],
                 claims,
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);
