@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using System.Net.NetworkInformation;
 using Microsoft.Extensions.FileProviders;
 using Serilog;
+using NZWalks.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,6 +110,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
